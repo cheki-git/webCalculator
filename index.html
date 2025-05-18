@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cCalculator</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+            font-family: arial;
+            font-size: 20px;
+        }
+        .container{
+            max-width: 500px;
+            width: 100%;
+            background-color: rgb(35, 35, 35);
+            padding: 5px 5px;
+        }
+        .numbers{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 4px;
+        }
+        .num{
+            background-color: rgb(61, 56, 56);
+            border: none;
+            width: 100%;
+            height: 50px;
+            border-radius: 4px;
+            font-size: 22px;
+            font-weight: 300;
+            color: white;
+            box-shadow: 0px 3px 2px inset rgb(35, 35, 35);
+        }
+        .num:hover{
+            opacity: 0.52;
+        }
+        #num-equal{
+            background-color:rgba(255, 134, 90, 0.86);
+        }
+        #num-op{
+            background-color: rgba(61, 56, 56, 0.526);
+        }
+        #num-op:hover{
+            background-color:  rgb(61, 56, 56);
+        }
+        .icon{
+            width: 28px;
+        }
+       .header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 35px;
+            margin-bottom: 30px;
+        }
+        .header p{
+            display: inline-block;
+            color: white;
+        }
+        .display{
+            display: flex;
+            flex-direction: column;
+            height: 150px;
+            justify-content: space-between;
+            padding: 5px 5px;
+        }
+        .result, .pre-result{
+            font-size: 32px;
+            color: white;
+            text-align: right;
+            margin-bottom: 15px;
+            background-color: transparent;
+            border: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="display">
+            <div class="header">
+                <div class="">
+                    <img src="./image/menu.png" alt="menu bar" class="menu-iconc icon">
+                    <p>Standard</p>
+                </div>
+                <div class="">
+                    <img src="./image/historyclock.jpg" alt="" class="icon history-icon">
+                </div>
+            </div>
+            <input type="text" name="result" class="pre-result">
+            <input type="text" name="result" class="result">
+        </div>
+       
+        <div class="numbers">
+            <input type="button" value="Clr" class="num" onclick="document.querySelector('.result').value = '' ">
+            <input type="button" value="Del" class="num" onclick="document.querySelector('.result').value = document.querySelector('.result').value.slice(0,-1) ">
+            <input type="button" value="Sqr" class="num" onclick="document.querySelector('.result').value += '^2' ">
+            <input type="button" value="e" class="num" onclick="document.querySelector('.result').value += 'e' ">
+            <input type="button" value="9" class="num" onclick="document.querySelector('.result').value += '9' ">
+            <input type="button" value="8" class="num" onclick="document.querySelector('.result').value += '8' ">
+            <input type="button" value="7" class="num" onclick="document.querySelector('.result').value += '7' ">
+            <input type="button" value="+" class="num" id="num-op" onclick="document.querySelector('.result').value += '+' ">
+            <input type="button" value="6" class="num" onclick="document.querySelector('.result').value += '6' ">
+            <input type="button" value="5" class="num" onclick="document.querySelector('.result').value += '5' ">
+            <input type="button" value="4" class="num" onclick="document.querySelector('.result').value += '4' ">
+            <input type="button" value="-" class="num" id="num-op" onclick="document.querySelector('.result').value += '-' ">
+            <input type="button" value="3" class="num" onclick="document.querySelector('.result').value += '3' ">
+            <input type="button" value="2" class="num" onclick="document.querySelector('.result').value += '2' ">
+            <input type="button" value="1" class="num" onclick="document.querySelector('.result').value += '1' ">
+            <input type="button" value="*" class="num" id="num-op" onclick="document.querySelector('.result').value += '*' ">
+            <input type="button" value="0" class="num" onclick="document.querySelector('.result').value += '0' ">
+            <input type="button" value="." class="num" onclick="document.querySelector('.result').value += '.' ">
+            <input type="button" value="/" class="num" id="num-op" onclick="document.querySelector('.result').value += '/' ">
+            <input type="button" value="=" class="num" id="num-equal" onclick="calc()">
+        </div>  
+    </div>
+
+    <script>
+
+        function calc(){
+           const resultfield = document.querySelector('.result');
+           const pre_resultfield = document.querySelector('.pre-result');
+           try{
+            pre_resultfield.value = resultfield.value;
+            resultfield.value = eval(resultfield.value);
+           }catch(e){
+            resultfield.value = 'Error';
+           }
+        }
+    </script>
+</body>
+</html>
